@@ -1,0 +1,448 @@
+ALGORITMO TP3
+Constante INDET "indeterminado"
+
+Constante RESN1 ← "JIRAFA"
+Constante RESN2 <- "CARNIVOROS"
+Constante RESN3 <- "ANFIBIOS"
+Constante RESN4 <- "FOTOSINTESIS"
+Constante RESN5 <- "ADN"
+
+Constante RESG1 <- "MADRID"
+Constante RESG2 <- "PERU"
+Constante RESG3 <- "23"
+Constante RESG4 <- "ATLANTICO"
+Constante RESG5 <- "MEXICO"
+
+Constante RESH1 <- "1810"
+Constante RESH2 <- "PREHISTORIA"
+Constante RESH3 <- "ROMANO"
+Constante RESH4 <- "HIROSHIMA"
+Constante RESH5 <- "NAPOLEON"
+
+Constante RESL1 <- "VERONA"
+Constante RESL2 <- "1616"
+Constante RESL3 <- "VERNE"
+Constante RESL4 <- "1872"
+Constante RESL5 <- "HOMERO"
+
+int main(){
+VARIABLES 
+    opcion: Caracter
+    usuario: Cadena
+    salir: Caracter
+
+    Mientras (usuario = INDET) Hacer
+
+        Escribir "Elija una opcion (1/2): "
+        Escribir "1. Introducir nombre de usuario.", "2. Salir del programa."
+        Leer opcion
+
+        Mientras (opcion ≠ '1' Y opcion ≠ '2') Hacer
+            Escribir "La opcion elegida es invalida. Ingrese una opcion valida (1/2): "
+            Leer opcion
+		Fin mientras
+
+        Si (opcion = '2') Entonces
+            Escribir "Esta seguro que desea salir del programa?(S/N)"
+            Leer salir
+            Si (salir = 'S') Entonces
+                Escribir "Hasta luego!"
+                Fin programa
+            Fin si
+        Sino
+            Escribir "Ingrese su nombre de usuario: "
+            Leer usuario
+        Fin si
+		
+        valoracion: Cadena
+        tematica1, tematica2, tematica3, tematica4 : Entero
+        tematica1 <- 1
+        tematica2 <- 2
+        tematica3 <- 3
+        tematica4 <- 4
+        respuesta : cadena
+        resultado, ctotales : Entero
+        porcentbien : Doble
+        porcentbien <- 0
+// contadores:
+        pnaturaleza, pgeografia, phistoria, pliteratura, cnaturaleza, cgeografia, chistoria, cliteratura : Entero
+        pnaturaleza <- 0
+        pgeografia <- 0
+        phistoria <- 0
+        pliteratura <- 0
+        cnaturaleza <- 0
+        cgeografia <- 0
+        chistoria <- 0
+        cliteratura <- 0
+
+        Mientras (usuario ≠ INDET) Hacer
+		
+            resultado = pnaturaleza + pgeografia + phistoria + pliteratura
+            ctotales = cnaturaleza + cgeografia + chistoria + cliteratura
+            Si (ctotales ≠ 0) Entonces
+                porcentbien = (resultado*100)/ctotales
+            Fin si
+            Escribir usuario, " elija una opcion (1/2/3/4):"
+            Escribir "1. Elegir tematica de las preguntas.", "2. Ver puntaje.", "3. Cambiar usuario.", "4. Salir del programa"
+            Leer opcion
+
+            Mientras (opcion ≠ '1' Y opcion ≠ '2' Y opcion ≠ '3' Y opcion ≠ '4') Hacer
+            Escribir "La opcion elegida es invalida. Ingrese una opcion valida (1/2/3/4): "
+            Leer opcion
+			Fin mientras
+            
+            Si (opcion = '4') Entonces
+                Escribir "Esta seguro que desea salir del programa?(S/N)"
+                Leer salir
+                Si (salir = 'S') Entonces
+                    Escribir "Hasta luego!"
+                Fin programa
+            Fin si
+
+            Si (opcion = '3') Entonces
+                Si (porcentbien >= 0 Y porcentbien <= 40) Entonces
+                    valoracion = "A ponerse las pilas! "
+                Sino
+                    Si (porcentbien > 40 Y porcentbien < 75) Entonces
+                        valoracion = "Bien hecho!"
+                    Sino
+                        valoracion = "Excelente!"
+                    Fin Si
+                Fin si
+                Escribir "Gracias ", usuario, " por participar! Su puntaje es ", resultado, " sobre ", ctotales, " respuestas contestadas. ", valoracion
+                usuario = INDET
+            Fin si
+
+            Si (opcion = '2') Entonces
+                Si (ctotales = 0) Entonces
+                    Escribir "Aun no ha contestado ninguna pregunta." 
+                Sino
+                    Si (porcentbien >= 0 Y porcentbien <= 40) Entonces
+                        valoracion = "A ponerse las pilas! "
+                    Sino
+                        Si (porcentbien > 40 Y porcentbien < 75) Entonces
+                            valoracion = "Bien hecho! "
+                        Sino
+                            valoracion = "Excelente!"
+                        Fin Si
+                    Fin Si
+                Fin Si
+                Escribir "Participante ", usuario, " su puntaje es ", resultado, " sobre ", ctotales, " respuestas contestadas. ", valoracion
+            Fin Si
+
+//****************************************** PREGUNTAS**********************************************************************************************
+
+            Si (opcion = '1') Entonces
+                tematica : Entero
+                avanzar : Caracter
+				avanzar <- 'S'
+
+                Escribir "Elija (1/2/3/4):", "1. Naturaleza", "2. Geografia", "3. Historia", "4. Literatura"
+                Leer tematica
+
+                Mientras (tematica ≠ 1 Y tematica ≠ 2 Y tematica ≠ 3 Y tematica ≠ 4) Hacer
+                    Escribir "La tematica elegida es invalida. Ingrese una tematica valida (1/2/3/4): "
+                    Leer tematica
+				Fin mientras
+                
+//*********************** NATURALEZA ***************************************************************************
+                Si (tematica = tematica1) Entonces
+                    Escribir usuario, " ha elegido Naturaleza."
+                    Si (cnaturaleza = 5) Entonces
+                        Escribir "Ya ha contestado todas las preguntas de esta tematica. Elija una nueva opcion."
+                    Fin si
+                    opcion <- 'S'
+                    Si (opcion = avanzar Y cnaturaleza = 0) Entonces
+                        cnaturaleza = cnaturaleza + 1
+                        Escribir "1. Que animal tiene el cuello mas largo?"
+                        Leer respuesta
+                        Si (respuesta = RESN1) Entonces
+                            pnaturaleza = pnaturaleza + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESN1
+                        Fin si
+                        Escribir "Desea avanzar a la siguiente pregunta? (S/N): "
+                        Leer opcion
+                    Fin si
+                    Si (opcion = avanzar Y cnaturaleza = 1) Entonces
+                        cnaturaleza = cnaturaleza + 1
+                        Escribir "2. Como se llaman los animales que comen carne?"
+                        Leer respuesta
+                        Si (respuesta = RESN2) Entonces
+                            pnaturaleza = pnaturaleza + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESN2
+                        Fin si
+                        Escribir "Desea avanzar a la siguiente pregunta? (S/N): " 
+                        Leer opcion
+                    Fin si
+                    Si (opcion = avanzar Y cnaturaleza = 2) Entonces
+                        cnaturaleza = cnaturaleza + 1
+                        Escribir "3. Como se llaman los animales que se mueven tanto en tierra como en agua?"
+                        Leer respuesta
+                        Si (respuesta = RESN3) Entonces
+                            pnaturaleza = pnaturaleza + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESN3
+                        Fin si
+                        Escribir "Desea avanzar a la siguiente pregunta? (S/N): " 
+                        Leer opcion
+                    Fin si
+                    Si (opcion = avanzar Y cnaturaleza = 3) Entonces
+                        cnaturaleza = cnaturaleza + 1
+                        Escribir "4. Como se llama el proceso por el cual las plantas consiguen energia?"
+                        Leer respuesta
+                        Si (respuesta = RESN4) Entonces
+                            pnaturaleza = pnaturaleza + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESN4
+                        Fin si
+                        Escribir "Desea avanzar a la siguiente pregunta? (S/N): " 
+                        Leer opcion
+                    Fin si
+                    Si (opcion = avanzar Y cnaturaleza = 4) Entonces
+                        cnaturaleza = cnaturaleza + 1
+                        Escribir "5. Como se llama la molecula donde se guarda el codigo genetico humano?"
+                        Leer respuesta
+                        Si (respuesta = RESN5) Entonces
+                            pnaturaleza = pnaturaleza + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino 
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESN5 
+                        Fin si
+                        resultado = pnaturaleza + pgeografia + phistoria + pliteratura
+                        Escribir "Ha contestado todas las preguntas para esta tematica. Su puntaje es: ", pnaturaleza 
+                        Escribir "Su puntaje total hasta el momento es: ", resultado
+                    Fin si
+                Fin si
+//*********************** GEOGRAFIA **********************************************************************************
+                Si (tematica = tematica2) Entonces
+                    Escribir usuario, " eligio Geografia"
+                    Si (cgeografia = 5) Entonces
+                        Escribir "Ya ha contestado todas las preguntas de esta tematica. Elija una nueva opcion."
+                    Fin si
+                    opcion <- 'S'
+                    Si (opcion = avanzar Y cgeografia = 0) Entonces
+                        cgeografia = cgeografia + 1
+                        Escribir "1. Como se llama la capital de Espana?"
+                        Leer respuesta
+                        Si (respuesta = RESG1) Entonces
+                            pgeografia = pgeografia + 1
+                            Escribir "Su respuesta es correcta!" 
+                        Sino
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESG1 
+                        Fin si
+                        Escribir "Desea avanzar a la siguiente pregunta? (S/N): " 
+                        Leer opcion
+                    Fin si
+                    Si (opcion = avanzar Y cgeografia = 1) Entonces
+                        cgeografia = cgeografia + 1
+                        Escribir "2. En que pais se encuentran las ruinas del Machu Picchu?" 
+                        Leer respuesta
+                        Si (respuesta = RESG2) Entonces
+                            pgeografia = pgeografia + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESG2 
+                        Fin si
+                        Escribir "Desea avanzar a la siguiente pregunta? (S/N): " 
+                        Leer opcion
+                    Fin si
+                    Si (opcion = avanzar Y cgeografia = 2) Entonces
+                        cgeografia = cgeografia + 1
+                        Escribir "3. Cuantas provincias comprenden la Republica Argentina?"
+                        Leer respuesta
+                        Si (respuesta = RESG3) Entonces
+                            pgeografia = pgeografia + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESG3 
+                        Fin si
+                        Escribir "Desea avanzar a la siguiente pregunta? (S/N): " 
+                        Leer opcion
+                    Fin si
+                    Si (opcion = avanzar Y cgeografia = 3) Entonces
+                        cgeografia = cgeografia + 1
+                        Escribir "4. Cual es el segundo oceano mas grYe del mundo?"
+                        Leer respuesta
+                        Si (respuesta = RESG4) Entonces
+                            pgeografia = pgeografia + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESG4
+                        Fin si
+                        Escribir "Desea avanzar a la siguiente pregunta? (S/N): " 
+                        Leer opcion
+                    Fin si
+                    Si (opcion = avanzar Y cgeografia = 4) Entonces
+                        cgeografia = cgeografia + 1
+                        Escribir "5. De que pais proviene la comida tradicional conocida como 'Tacos'? " 
+                        Leer respuesta
+                        Si (respuesta = RESG5) Entonces
+                            pgeografia = pgeografia + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESG5 
+                        Fin si
+                        resultado = pnaturaleza + pgeografia + phistoria + pliteratura
+                        Escribir "Ha contestado todas las preguntas para esta tematica. Su puntaje es: ", pgeografia
+                        Escribir "Su puntaje total hasta el momento es: ", resultado
+                    Fin si
+                Fin si
+//*********************** HISTORIA **********************************************************************************
+                Si (tematica = tematica3) Entonces
+                    Escribir usuario, " eligio Historia"
+                    Si (chistoria = 5) Entonces
+                        Escribir "Ya ha contestado todas las preguntas de esta tematica. Elija una nueva opcion." 
+                    Fin si
+                    opcion <- 'S'
+                    Si (opcion = avanzar Y chistoria = 0) Entonces
+                        chistoria = chistoria + 1
+                        Escribir "1. En que a?o fue la Revolucion de Mayo?" 
+                        Leer respuesta
+                        Si (respuesta = RESH1) Entonces
+                            phistoria = phistoria + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESH1
+                        Fin si
+                        Escribir "Desea avanzar a la siguiente pregunta? (S/N): " 
+                        Leer opcion
+                    Fin si
+                    Si (opcion = avanzar Y chistoria = 1) Entonces
+                        chistoria = chistoria + 1
+                        Escribir "2. Que epoca finalizo con la invencion de la escritura?" 
+                        Leer respuesta
+                        Si (respuesta = RESH2) Entonces
+                            phistoria = phistoria + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino 
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESH2 
+                        Fin si
+                        Escribir "Desea avanzar a la siguiente pregunta? (S/N): " 
+                        Leer opcion
+                    Fin si
+                    Si (opcion = avanzar Y chistoria = 2) Entonces
+                        chistoria = chistoria + 1
+                        Escribir "3. Que importante imperio cayo definitivamente en el ano 1453?"
+                        Leer respuesta
+                        Si (respuesta = RESH3) Entonces
+                            phistoria = phistoria + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino 
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESH3 
+                        Fin si
+                        Escribir "Desea avanzar a la siguiente pregunta? (S/N): " 
+                        Leer opcion
+                    Fin si
+                    Si (opcion = avanzar Y chistoria = 3) Entonces
+                        chistoria = chistoria + 1
+                        Escribir "4. En que ciudad se solto la primera bomba atomica el 6 de agosto de 1945?"
+                        Leer respuesta
+                        Si (respuesta = RESH4) Entonces
+                            phistoria = phistoria + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESH4 
+                        Fin si
+                        Escribir "Desea avanzar a la siguiente pregunta? (S/N): " 
+                        Leer opcion
+                    Fin si
+                    Si (opcion = avanzar Y chistoria = 4) Entonces
+                        chistoria = chistoria + 1
+                        Escribir "5. Cual es el nombre del conquistador europeo que fue derrotado en la batalla de Waterloo?" 
+                        Leer respuesta
+                        Si (respuesta = RESH5) Entonces
+                            phistoria = phistoria + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESH5
+                        Fin si
+                        resultado = pnaturaleza + pgeografia + phistoria + pliteratura
+                        Escribir "Ha contestado todas las preguntas para esta tematica. Su puntaje es: ", phistoria 
+                        Escribir "Su puntaje total hasta el momento es: ", resultado
+                    Fin si
+                Fin si
+//*********************** LITERATURA **********************************************************************************
+                Si (tematica = tematica4) Entonces
+                    Escribir usuario, " eligio Literatura"
+                    Si (cliteratura = 5) Entonces
+                        Escribir "Ya ha contestado todas las preguntas de esta tematica. Elija una nueva opcion."
+                    Fin si
+                    opcion <- 'S'
+                    Si (opcion = avanzar Y cliteratura = 0) Entonces
+                        cliteratura = cliteratura + 1
+                        Escribir "1. En que ciudad de Italia transcurre la obra 'Romeo y Julieta'?"
+                        Leer respuesta
+                        Si (respuesta = RESL1) Entonces
+                            pliteratura = pliteratura + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESL1 
+                        Fin si
+                        Escribir "Desea avanzar a la siguiente pregunta? (S/N): " 
+                        Leer opcion
+                    Fin si
+                    Si (opcion = avanzar Y cliteratura = 1) Entonces
+                        cliteratura = cliteratura + 1
+                        Escribir "2. En que ano fallecieron los famosos escritores William Shakespeare y Miguel de Cervantes?" 
+                        Leer respuesta
+                        Si (respuesta = RESL2) Entonces
+                            pliteratura = pliteratura + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESL2 
+                        Fin si
+                        Escribir "Desea avanzar a la siguiente pregunta? (S/N): " 
+                        Leer opcion
+                    Fin si
+                    Si (opcion = avanzar Y cliteratura = 2) Entonces
+                        cliteratura = cliteratura + 1
+                        Escribir "3. Cual es el apellido del autor de '20000 leguas de viaje submarino'?" 
+                        Leer respuesta
+                        Si (respuesta = RESL3) Entonces
+                            pliteratura = pliteratura + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESL3 
+                        Fin si
+                        Escribir "Desea avanzar a la siguiente pregunta? (S/N): " 
+                        Leer opcion
+                    Fin si
+                    Si (opcion = avanzar Y cliteratura = 3) Entonces
+                        cliteratura = cliteratura + 1
+                        Escribir "4. En que a?o se publico por primera vez en Argentina el libro 'Martin Fierro'?"
+                        Leer respuesta
+                        Si (respuesta = RESL4) Entonces
+                            pliteratura = pliteratura + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESL4 
+                        Fin si
+                        Escribir "Desea avanzar a la siguiente pregunta? (S/N): " 
+                        Leer opcion
+                    Fin si
+                    Si (opcion = avanzar Y cliteratura = 4) Entonces
+                        cliteratura = cliteratura + 1
+                        Escribir "5. Quien fue el autor de 'La Iliada' y 'La odisea'?"
+                        Leer respuesta
+                        Si (respuesta = RESL5) Entonces
+                            pliteratura = pliteratura + 1
+                            Escribir "Su respuesta es correcta!"
+                        Sino
+                            Escribir "Su respuesta es incorrecta. La respuesta correcta es ", RESL5 
+                        Fin si
+                        resultado = pnaturaleza + pgeografia + phistoria + pliteratura
+                        Escribir "Ha contestado todas las preguntas para esta tematica. Su puntaje es: ", pliteratura
+                        Escribir "Su puntaje total hasta el momento es: ", resultado 
+                    Fin si
+                Fin si
+            Fin si
+//******************* FIN PREGUNTAS************************************************************************************************
+        Fin mientras
+    Fin mientras
+Fin main
